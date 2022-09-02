@@ -25,7 +25,7 @@ class EjerciciosListView(View) :
         #print(request.body)
         jd = json.loads(request.body)
         #print(jd)
-        Ejercicios.objects.create(titulo=jd['titulo'], descripcion=jd['descripcion'])
+        Ejercicios.objects.create(titulo=jd['titulo'], subtitulo=jd['subtitulo'] ,descripcion=jd['descripcion'])
         datos = {'message': "Success"}
         return JsonResponse(datos)
          
@@ -39,11 +39,12 @@ class EjercicioDetalladoView(View):
         return JsonResponse (model_to_dict(list))
 
     def put(self, request, pk) :
-            dLista = Ejercicios.objects.get(id=pk)
-            print(dLista)
-            jd = json.loads(request.body)
-            print(jd)
-            Ejercicios.objects.update_or_create(titulo=jd['titulo'], descripcion=jd['descripcion'])
+            jd=json.loads(request.body)
+            obj = get_object_or_404(Ejercicios, id = pk)
+            obj.titulo=jd['titulo']
+            obj.subtitulo=jd['subtitulo']
+            obj.descripcion=jd['descripcion']
+            obj.save()
             datos = {'message': "Success"}
             return JsonResponse(datos)
 
