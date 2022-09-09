@@ -23,6 +23,17 @@ class Ejercicios(models.Model):
     blank=True,
     )
 
+    class Meta:
+        verbose_name = 'Ejercicio'
+        verbose_name_plural = 'Ejercicios'
+        ordering = ['-titulo', 'subtitulo']
+
+
+    def __str__(self):
+        return str(self.id) + '-' + self.titulo + '-' + self.subtitulo    
+
+
+
 
 class HabilidadEjercicio(models.Model):
     description = models.CharField(
@@ -42,10 +53,10 @@ class HabilidadEjercicio(models.Model):
     )
     
     class meta:
-        db_table = 'ejercicio_ejercicio_habilidades'
+        db_table = 'PlanillaEjercicios_ejercicio_habilidades'
         verbose_name = 'Habilidad Ejercicio'
         verbose_name_plural = 'Habilidades Ejercicios'
-
+    
 
 
 
