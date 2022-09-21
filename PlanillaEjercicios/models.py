@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 class Habilidades(models.Model):
@@ -14,8 +15,8 @@ class Ejercicios(models.Model):
     
 
     titulo = models.CharField('Titulo', max_length=50)
-    subtitulo = models.CharField('Subtitulo', max_length=50 )
     descripcion = models.TextField('Descripcion')
+    dificultad = models.CharField('Dificultad', max_length=10, default= 1)
     
     habilidades = models.ManyToManyField(
     Habilidades,
@@ -26,11 +27,11 @@ class Ejercicios(models.Model):
     class Meta:
         verbose_name = 'Ejercicio'
         verbose_name_plural = 'Ejercicios'
-        ordering = ['-titulo', 'subtitulo']
+        ordering = ['-titulo']
 
 
     def __str__(self):
-        return str(self.id) + '-' + self.titulo + '-' + self.subtitulo    
+        return str(self.id) + '-' + self.titulo + '-'  
 
 
 

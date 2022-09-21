@@ -19,8 +19,8 @@ class EjercicioAdmin(admin.ModelAdmin):
     inlines = [HabilidadEjercicioInline,]
     list_display = (
         'titulo',
-        'subtitulo',
         'descripcion',
+        'dificultad'
     )
     #
 
