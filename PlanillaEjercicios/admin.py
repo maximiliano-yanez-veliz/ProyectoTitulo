@@ -22,6 +22,10 @@ class EjercicioAdmin(admin.ModelAdmin):
         'descripcion',
         'dificultad'
     )
+    search_fields = ('titulo',)
+    list_display_links = ('titulo',)
+    list_filter = ('dificultad',)
+    list_per_page = 10
     #
 
 
