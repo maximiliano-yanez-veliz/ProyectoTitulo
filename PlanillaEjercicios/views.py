@@ -25,6 +25,17 @@ class EjercicioListView(ListView):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Gestion de Ejercicios'
         return context
+
+def registrar_ejercicio(request):
+    titulo=request.POST['txtTitulo']
+    descripcion=request.POST['txtDescripcion']
+    dificultad=request.POST['numDificultad']
+    
+    ejercicio=Ejercicios.objects.create(titulo=titulo, descripcion=descripcion, dificultad=dificultad)
+    return redirect('/')
+
+
+
     
 def eliminar_ejercicio(request,id):
     ejercicio = Ejercicios.objects.get(id=id)
