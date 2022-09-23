@@ -24,7 +24,7 @@
                 <a class="nav-link" href="registroEjercicio/">Agregar Ejercicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="habilidadEjercicios/">Habilidades Ejercicios</a>
+                <a class="nav-link" href="registroEjercicio/">Habilidades Ejercicios</a>
               </li>
               <li class="nav-item">
             </ul>
@@ -33,21 +33,20 @@
       </nav>
     <div class="container py-4">
         <div class = "row">
-                        <form id="formularioEjercicio" action="/registrarEjercicio/" method="POST">{% csrf_token %}
+                        <form id="formularioEjercicio" action="/habilidadEjercicios/" method="POST">{% csrf_token %}
                         </form>
                     </div>
                 </div>
             </div>
                 <div class="col-md-4 offset-md-4">
-                    <h2>Listado de Ejercicios</h2>
+                    <h2>Listado de Habilidades</h2>
                     <div class="table-responsive"> 
                         <table class="table table-striped"> 
                             <thead>
                                 <tr>
                                     <th class="centrado"># </th>
                                     <th class="centrado">Titulo </th>
-                                    <th class="centrado">Descripcion </th>
-                                    <th class="centrado">Dificultad </th>
+                                    <th class="centrado">Habilidad </th>
                                     <th colspan = "2" class="centrado" >Opciones </th>
                                 </tr>
                             </thead>
@@ -55,9 +54,8 @@
                                 {% for c in object_list %}
                                 <tr>
                                     <td class="centrado">{{forloop.counter}}</td>
-                                    <td class="centrado">{{c.titulo}}</td>
-                                    <td class="centrado">{{c.descripcion}}</td>
-                                    <td class="centrado">{{c.dificultad}}</td>
+                                    <td class="centrado">{{c.hablidad}}</td>
+                                    <td class="centrado">{{c.description}}</td>
                                     <td><a href="edicionEjercicios/{{c.id}}" 
                                         class="btn btn-sm btn-block btn-info">Editar</a></td>
                                     <td><a href="eliminacionEjercicios/{{c.id}}" 

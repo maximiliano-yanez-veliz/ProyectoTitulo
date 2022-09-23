@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titulo}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/gestionEjercicios.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container-fluid">
+          <a class="navbar-brand" href='/'>LOGO</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href='/'>Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href='registroEjercicio/'>Agregar Ejercicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="registroEjercicio/">Habilidades Ejercicios</a>
+              </li>
+              <li class="nav-item">
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="container py-4">
+        <div class = "row">
+            <div class = "col-md-4 offset-md-4">
+                <h2>Editar Ejercicios</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <form id="formularioEjercicio" action="/editarEjercicio/" method="POST">{% csrf_token %}
+                            <input type="hidden" name="id" value="{{ejercicio.id}}">
+                            <div class="form-group">
+                                <input type = "text" id="txtTitulo" name = "txtTitulo" value ="{{ejercicio.titulo}}" class="form-contro" minlength="4" maxlength="50" 
+                                placeholder="Titulo" autofocus required>
+                            </div>
+                            <div class="form-group">
+                                <input type = "text" id="txtDescripcion" name = "txtDescripcion" value ="{{ejercicio.descripcion}}" class="form-contro" minlength="10" maxlength="300"
+                                 placeholder="Descripcion" required>
+                            </div>
+                            <div class="form-group">
+                                <input type = "number" id="numDificultad" name = "numDificultad" value ="{{ejercicio.dificultad}}" class="form-contro" min="1"
+                                 max="10"  required>
+                            </div>
+                            <div class="form-group">
+                                <input type = "submit" class="btn btn-success bt-block text-white" value="Guardar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+</body>
+</html>
