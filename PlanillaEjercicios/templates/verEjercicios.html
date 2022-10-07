@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% load static %}
+		<meta charset="UTF-8">
+		<title>Ver Ejercicio</title>
+		<meta name = "viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{titulo}}</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+		<link rel="stylesheet" href="{% static 'css/gestionEjercicios.css' %}">
+	</head>
+	<style>
+		.navbar {
+		  background-color: #1c33e3;
+		}
+		.navbar .navbar-brand {
+		  color: #141818;
+		}
+		.navbar .navbar-brand:hover,
+		.navbar .navbar-brand:focus {
+		  color: #ffffff;
+		}
+		.navbar .navbar-text {
+		  color: #141818;
+		}
+		.navbar .navbar-text a {
+		  color: #ffffff;
+		}
+		.navbar .navbar-text a:hover,
+		.navbar .navbar-text a:focus {
+		  color: #ffffff; 
+		}
+		.navbar .navbar-nav .nav-link {
+		  color: #141818;
+		  border-radius: .25rem;
+		  margin: 0 0.25em;
+		}
+		.navbar .navbar-nav .nav-link:not(.disabled):hover,
+		.navbar .navbar-nav .nav-link:not(.disabled):focus {
+		  color: #ffffff;
+		}
+		.navbar .navbar-nav .nav-item.active .nav-link,
+		.navbar .navbar-nav .nav-item.active .nav-link:hover,
+		.navbar .navbar-nav .nav-item.active .nav-link:focus,
+		.navbar .navbar-nav .nav-item.show .nav-link,
+		.navbar .navbar-nav .nav-item.show .nav-link:hover,
+		.navbar .navbar-nav .nav-item.show .nav-link:focus {
+		  color: #ffffff;
+		  background-color: #1c33e3;
+		}
+		.navbar .navbar-toggler {
+		  border-color: #1c33e3;
+		}
+		.navbar .navbar-toggler:hover,
+		.navbar .navbar-toggler:focus {
+		  background-color: #1c33e3;
+		}
+		.navbar .navbar-toggler .navbar-toggler-icon {
+		  color: #141818;
+		}
+		.navbar .navbar-collapse,
+		.navbar .navbar-form {
+		  border-color: #141818;
+		}
+		.navbar .navbar-link {
+		  color: #141818;
+		}
+		.navbar .navbar-link:hover {
+		  color: #ffffff;
+		}
+		
+		@media (max-width: 575px) {
+		  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+			color: #141818;
+		  }
+		  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+			color: #ffffff;
+		  }
+		  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+			color: #ffffff;
+			background-color: #1c33e3;
+		  }
+		}
+		
+		@media (max-width: 767px) {
+		  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+			color: #141818;
+		  }
+		  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+			color: #ffffff;
+		  }
+		  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+			color: #ffffff;
+			background-color: #1c33e3;
+		  }
+		}
+		
+		@media (max-width: 991px) {
+		  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+			color: #141818;
+		  }
+		  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+			color: #ffffff;
+		  }
+		  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+			color: #ffffff;
+			background-color: #1c33e3;
+		  }
+		}
+		
+		@media (max-width: 1199px) {
+		  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+			color: #141818;
+		  }
+		  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+			color: #ffffff;
+		  }
+		  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+			color: #ffffff;
+			background-color: #1c33e3;
+		  }
+		}
+		
+		.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+		  color: #141818;
+		}
+		.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+		  color: #ffffff;
+		}
+		.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+		  color: #ffffff;
+		  background-color: #1c33e3;
+		}
+	  </style>
+	  <body>
+		  <nav class="navbar navbar-expand-lg">
+			<div class="container-fluid">
+				<a class="navbar-brand" href='/'>LOGO</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href='/'>Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'ejercicio' %}">Ejercicios</a>
+						</li>
+						<li class="nav-item">
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container py-4">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/">Inicio</a></li>
+					<li class="breadcrumb-item active" aria-current="page" ><a href="{% url 'ejercicio' %}">Ejercicios</a></li>
+					<li class="breadcrumb-item active" aria-current="page" ><a href="{% url 'ver_ejercicio' ejercicio_id=ejercicio.pk %}">Ver Ejercicio {{ejercicio.pk}}</a></li>
+				</ol>
+			</nav>
+			<div class = "row">
+				<div class = "col-md-6 offset-md-3">
+					<h2>Ejercicio [identificador: {{ejercicio.id}}]</h2>
+					<div class="card">
+						<div class="card-body">
+							<table style="border-collapse:separate;border-spacing:0 5px;">
+								<tr>
+									<td>Titulo: </td>
+									<td>{{ejercicio.titulo}}</td>
+								</tr>
+								<tr>
+									<td>Descripción: </td>
+									<td>{{ejercicio.descripcion}}</td>
+								</tr>
+								<tr>
+									<td>Dificultad: </td>
+									<td>{{ejercicio.dificultad}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="">
+					<center><h2>Habilidades</h2></center>
+					<table class="table table-bordered"> 
+						<thead>
+							<tr>
+								<th colspan="3" class="centrado">Abstraction</th>
+							</tr>
+							<tr>
+								<th class="centrado">The student must be able to model relevant data of the problem using variables of simple data types (numeric, character, boolean)</th>
+								<th class="centrado">The student must be able  to model relevant data of the problem using collections (arrays, lists or trees).</th>
+								<th class="centrado">The student must be able to model relevant concepts of the problem with user defined types.</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for result in result_abstraction %}
+								<tr>
+									{% for r,i in result.items %}
+										<td>{{i}}</td>
+									{% endfor %}
+								</tr>
+							{% endfor%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="">
+					<table class="table table-bordered"> 
+						<thead>
+							<tr>
+								<th colspan="4" class="centrado">Decomposition</th>
+							</tr>
+							<tr>
+								<th class="centrado">The student must be able to divide the problem in steps  to compose de solution.</th>
+								<th class="centrado">The student must be able to divide the problem in subproblems each with multiple steps to progressively compose the solution</th>
+								<th class="centrado">The student must be able to divide the problem in  responsibilites and assign them to classes to compose the solution.</th>
+								<th class="centrado">The student must be able to organize the solution of the problem creating multiple modules</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for result in result_decomposition %}
+								<tr>
+									{% for r,i in result.items %}
+										<td>{{i}}</td>
+									{% endfor %}
+								</tr>
+							{% endfor%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="">
+					<table class="table table-bordered"> 
+						<thead>
+							<tr>
+								<th colspan="4" class="centrado">Pattern Recognition and Generalization</th>
+							</tr>
+							<tr>
+								<th class="centrado">The student must be able to identify logic conditions and exceptions to a common pattern and define conditionals to handle them</th>
+								<th class="centrado">The student must be able to discover a cyclic pattern in the problem and define a loop to handle it</th>
+								<th class="centrado">The student must be able to identify repeated steps in the solution and reuse or define functions or algorithms to handle them</th>
+								<th class="centrado">The student must be able to discover a recursive pattern in the problem to solve it</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for result in result_pattern %}
+								<tr>
+									{% for r,i in result.items %}
+										<td>{{i}}</td>
+									{% endfor %}
+								</tr>
+							{% endfor%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="">
+					<table class="table table-bordered"> 
+						<thead>
+							<tr>
+								<th colspan="5" class="centrado">Algorithmic thinking</th>
+							</tr>
+							<tr>
+								<th class="centrado">The student must design a sequence of expressions to implement each step to solve the problem without the need of data structures.</th>
+								<th class="centrado">The student must design a sequence of expressions to solve the problem using data contained in a single data structure.</th>
+								<th class="centrado">The student must design a sequence of expressions to solve the problem combining data from several data structures and/or sources.</th>
+								<th class="centrado">The student must design a recursive sequence of expressions to solve the problem.</th>
+								<th class="centrado">The student must design a concurrent sequence of expressions to solve the problem</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for result in result_algorithmic %}
+								<tr>
+									{% for r,i in result.items %}
+										<td>{{i}}</td>
+									{% endfor %}
+								</tr>
+							{% endfor%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+	</body>
+</html>

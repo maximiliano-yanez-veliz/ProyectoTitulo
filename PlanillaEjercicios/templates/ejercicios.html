@@ -3,11 +3,13 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
-    <title>Agregar Ejercicios</title>
     <meta name = "viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{titulo}}</title>
+    <title>Listado de Ejercicios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/gestionEjercicios.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <style>
   .navbar {
@@ -162,32 +164,64 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Inicio</a></li>
           <li class="breadcrumb-item active" aria-current="page" ><a href="{% url 'ejercicio' %}">Ejercicios</a></li>
-          <li class="breadcrumb-item active" aria-current="page" ><a href="{% url 'registroEjercicio' %}">Registrar Ejercicio</a></li>
         </ol>
       </nav>
+      {% if messages %}
+        <div id="message">
+            {% for message in messages %}
+              <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }} </div>
+            {% endfor %}
+        </div>
+      {% endif %}
+      <div id="messageEliminar"></div>
         <div class = "row">
-            <div class = "col-md-4 offset-md-4">
-                <h2>Registrar Ejercicio </h2>
-                <div class="card">
-                    <div class="card-body">
-                        <form id="formularioEjercicio" action="/creacionEjercicio/" method="POST" enctype="multipart/form-data">{% csrf_token %}
-                            <div>
-                              <label for="id_file" class="required">Archivo:</label>
-                              <input type="file" title="Upload excel file" name="file" uploader-model="file" required="required">
-                            </div>
-                            <br>
-                            <div class="form-group">
-                              <input type = "submit" class="btn btn-success bt-block text-white" value="Guardar">
-                            </div>
-                        </form>
-                    </div>
+            <div  id="tablaEjercicio" class="">
+              <div class="row">
+                <div class="col-10">
+                  <h2>Listado de Ejercicios</h2>
                 </div>
+                <div class="col-2">
+                  <a href="{% url 'registroEjercicio' %}" class="btn btn-sm btn-block btn-success" style="float: right;">+ Agregar ejercicios</a>
+                </div>
+                <br><br><br><br>
+                
+              </div>
+                <div class="table-responsive"> 
+                    <table class="table table-striped"> 
+                        <thead>
+                            <tr>
+                                <th class="centrado"># </th>
+                                <th class="centrado">Titulo </th>
+                                <th class="centrado">Descripción </th>
+                                <th class="centrado">Dificultad </th>
+                                <th class="centrado" >Opciones </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in ejercicios %}
+                              <tr>
+                                  <td class="centrado">{{forloop.counter}}</td>
+                                  <td class="centrado">{{e.titulo}}</td>
+                                  <td class="centrado">{{e.descripcion}}</td>
+                                  <td class="centrado">{{e.dificultad}}</td>
+                                  <td>
+                                    <a href="{% url 'ver_ejercicio' ejercicio_id=e.pk %}" title="Ver"><i class="bi bi-search"></i></a>
+                                    <a href="{% url 'editar_ejercicio' ejercicio_id=e.pk %}" title="Editar"><i class="bi bi-pen"></i></a>
+                                    <a onClick="eliminarEjercicio(this.id)" id="{{e.pk}}" title="Eliminar"><i style="color: red;" class="bi bi-trash"></i></a>
+                                  </td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% csrf_token %} 
+                </div>    
             </div>   
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{% static 'js/utils/notificacionSwal.js' %}"></script>
+    <script src="{% static 'js/ejercicio.js' %}"></script>
   </body>
 </html>

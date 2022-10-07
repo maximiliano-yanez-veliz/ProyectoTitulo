@@ -4,12 +4,140 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name = "viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{titulo}}</title>
+    <title>Editar Ejercicios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/gestionEjercicios.css' %}">
 </head>
+<style>
+  .navbar {
+    background-color: #1c33e3;
+  }
+  .navbar .navbar-brand {
+    color: #141818;
+  }
+  .navbar .navbar-brand:hover,
+  .navbar .navbar-brand:focus {
+    color: #ffffff;
+  }
+  .navbar .navbar-text {
+    color: #141818;
+  }
+  .navbar .navbar-text a {
+    color: #ffffff;
+  }
+  .navbar .navbar-text a:hover,
+  .navbar .navbar-text a:focus {
+    color: #ffffff; 
+  }
+  .navbar .navbar-nav .nav-link {
+    color: #141818;
+    border-radius: .25rem;
+    margin: 0 0.25em;
+  }
+  .navbar .navbar-nav .nav-link:not(.disabled):hover,
+  .navbar .navbar-nav .nav-link:not(.disabled):focus {
+    color: #ffffff;
+  }
+  .navbar .navbar-nav .nav-item.active .nav-link,
+  .navbar .navbar-nav .nav-item.active .nav-link:hover,
+  .navbar .navbar-nav .nav-item.active .nav-link:focus,
+  .navbar .navbar-nav .nav-item.show .nav-link,
+  .navbar .navbar-nav .nav-item.show .nav-link:hover,
+  .navbar .navbar-nav .nav-item.show .nav-link:focus {
+    color: #ffffff;
+    background-color: #1c33e3;
+  }
+  .navbar .navbar-toggler {
+    border-color: #1c33e3;
+  }
+  .navbar .navbar-toggler:hover,
+  .navbar .navbar-toggler:focus {
+    background-color: #1c33e3;
+  }
+  .navbar .navbar-toggler .navbar-toggler-icon {
+    color: #141818;
+  }
+  .navbar .navbar-collapse,
+  .navbar .navbar-form {
+    border-color: #141818;
+  }
+  .navbar .navbar-link {
+    color: #141818;
+  }
+  .navbar .navbar-link:hover {
+    color: #ffffff;
+  }
+  
+  @media (max-width: 575px) {
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+      color: #141818;
+    }
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+      color: #ffffff;
+    }
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+      color: #ffffff;
+      background-color: #1c33e3;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+      color: #141818;
+    }
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+      color: #ffffff;
+    }
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+      color: #ffffff;
+      background-color: #1c33e3;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+      color: #141818;
+    }
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+      color: #ffffff;
+    }
+    .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+      color: #ffffff;
+      background-color: #1c33e3;
+    }
+  }
+  
+  @media (max-width: 1199px) {
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+      color: #141818;
+    }
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+      color: #ffffff;
+    }
+    .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+      color: #ffffff;
+      background-color: #1c33e3;
+    }
+  }
+  
+  .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #141818;
+  }
+  .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffffff;
+  }
+  .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffffff;
+    background-color: #1c33e3;
+  }
+</style>
 <body>
-    <nav class="navbar navbar-expand-lg bg-success">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href='/'>LOGO</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,10 +149,7 @@
                 <a class="nav-link active" aria-current="page" href='/'>Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href='registroEjercicio/'>Agregar Ejercicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="registroEjercicio/">Habilidades Ejercicios</a>
+                <a class="nav-link" href="{% url 'ejercicio' %}">Ejercicios</a>
               </li>
               <li class="nav-item">
             </ul>
@@ -32,25 +157,38 @@
         </div>
     </nav>
     <div class="container py-4">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page" ><a href="{% url 'ejercicio' %}">Ejercicios</a></li>
+            <li class="breadcrumb-item active" aria-current="page" ><a href="{% url 'editar_ejercicio' ejercicio_id=ejercicio.pk %}">Editar Ejercicio {{ejercicio.pk}}</a></li>
+          </ol>
+        </nav>
         <div class = "row">
-            <div class = "col-md-4 offset-md-4">
-                <h2>Editar Ejercicios</h2>
+            <div class = "col-md-6 offset-md-3">
+                <h2>Editar Ejercicio [identificador: {{ejercicio.id}}]</h2>
                 <div class="card">
                     <div class="card-body">
-                        <form id="formularioEjercicio" action="/editarEjercicio/" method="POST">{% csrf_token %}
-                            <input type="hidden" name="id" value="{{ejercicio.id}}">
+                        <form id="formularioEjercicio" action="{% url 'editar_ejercicio' ejercicio_id=ejercicio.pk %}" method="POST">
+                            {% csrf_token %}
                             <div class="form-group">
-                                <input type = "text" id="txtTitulo" name = "txtTitulo" value ="{{ejercicio.titulo}}" class="form-contro" minlength="4" maxlength="50" 
+                                <label for="txtTitulo">Titulo: </label>
+                                <input type = "text" id="txtTitulo" name = "txtTitulo" value ="{{ejercicio.titulo}}" class="form-control" minlength="4" maxlength="50" 
                                 placeholder="Titulo" autofocus required>
                             </div>
+                            <br>
                             <div class="form-group">
-                                <input type = "text" id="txtDescripcion" name = "txtDescripcion" value ="{{ejercicio.descripcion}}" class="form-contro" minlength="10" maxlength="300"
-                                 placeholder="Descripcion" required>
+                                <label for="txtDescripcion">Descripción: </label>
+                                <textarea type = "text" id="txtDescripcion" name = "txtDescripcion" class="form-control"
+                                 placeholder="Descripcion" required>{{ejercicio.descripcion}}</textarea>
                             </div>
+                            <br>
                             <div class="form-group">
-                                <input type = "number" id="numDificultad" name = "numDificultad" value ="{{ejercicio.dificultad}}" class="form-contro" min="1"
+                                <label for="numDificultad">Dificultad: </label>
+                                <input type = "number" id="numDificultad" name = "numDificultad" value ="{{ejercicio.dificultad}}" class="form-control" min="1"
                                  max="10"  required>
                             </div>
+                            <br>
                             <div class="form-group">
                                 <input type = "submit" class="btn btn-success bt-block text-white" value="Guardar">
                             </div>
